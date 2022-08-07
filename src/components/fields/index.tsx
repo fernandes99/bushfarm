@@ -8,7 +8,7 @@ import field_carrot_growing from "../../assets/img/field_carrot_growing.svg";
 import field_beet_mature from "../../assets/img/field_beet_mature.svg";
 import field_beet_growing from "../../assets/img/field_beet_growing.svg";
 
-export const fields = {
+export const fields:any = {
     empty: () => <img src={field_empty} alt="Field empty" />,
 
     tomato: {

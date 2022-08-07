@@ -1,4 +1,4 @@
-import { UserStateType } from "./types";
+import { PlatationGeneralStateType, UserStateType } from "./types";
 
 export const mocks = {
     user: {
@@ -15,5 +15,15 @@ export const mocks = {
         },
         pokemons: [],
         pokedex: []
-    } as UserStateType
+    } as UserStateType,
+
+    plantation: {
+        all: {
+            id: 0,
+            type: '',
+            state: '',
+            planted_at: new Date(),
+            mature_at: new Date()
+        } as PlatationGeneralStateType,
+    }
 }

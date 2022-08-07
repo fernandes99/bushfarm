@@ -1,12 +1,29 @@
+import { useEffect, useState } from "react"
 import { fields } from "../../components/fields"
+import { Plantation } from "../../service/plantation"
 import { Box, Background, FieldList } from "./styles"
 
 export const HomePage = () => {
+    const [ allPlantation, setAllPlantation ] = useState<any>();
+
+    useEffect(() => {
+        Plantation.get.all().then(res => setAllPlantation(res));
+    }, [])
 
     return (
         <Box>
             <Background>
-                <FieldList>
+                {allPlantation
+                    ? <FieldList> 
+                        {
+                            allPlantation.map((field: any) => {
+                                let Component = fields[field.type][field.state];
+                                return (<Component />)
+                            })
+                        }
+                    </FieldList>
+                    : null}
+                {/* <FieldList>
                     <fields.empty />
                     <fields.tomato.growing />
                     <fields.tomato.mature />
@@ -17,7 +34,7 @@ export const HomePage = () => {
                     <fields.beet.growing />
                     <fields.beet.mature />
                     <fields.empty />
-                </FieldList>
+                </FieldList> */}
             </Background>
         </Box>
     )
