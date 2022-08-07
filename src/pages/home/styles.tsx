@@ -26,6 +26,8 @@ export const FieldList = styled.ul`
 
     img {
         transition: all .3s;
+        cursor: pointer;
+
         &:hover {
             transform: scale(1.03);
         }

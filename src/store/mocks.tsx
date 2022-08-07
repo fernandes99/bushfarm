@@ -18,12 +18,14 @@ export const mocks = {
     } as UserStateType,
 
     plantation: {
-        all: {
-            id: 0,
-            type: '',
-            state: '',
-            planted_at: new Date(),
-            mature_at: new Date()
-        } as PlatationGeneralStateType,
+        all: [
+            {
+                id: 0,
+                type: '',
+                state: '',
+                planted_at: new Date(),
+                mature_at: new Date()
+            },
+        ] as Array<PlatationGeneralStateType>,
     }
 }

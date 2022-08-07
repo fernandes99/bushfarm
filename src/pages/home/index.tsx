@@ -14,10 +14,10 @@ export const HomePage = () => {
         <Box>
             <Background>
                 {allPlantation
-                    ? <FieldList> 
+                    ? <FieldList>
                         {
                             allPlantation.map((field: any) => {
-                                let Component = fields[field.type][field.state];
+                                let Component = field.state == 'empty' ? fields[field.state] : fields[field.type][field.state];
                                 return (<Component />)
                             })
                         }
