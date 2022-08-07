@@ -36,9 +36,9 @@ export const HomePage = () => {
                                     let minute = Math.floor(diff/(60));
                                     diff = diff - (minute * 60);
 
-                                    let second = diff;
+                                    // let second = diff;
                                     tooltip = `${day}d${hour}h${minute}m to cultivate`;
-                                }
+                                } // TODO: Mover para um util
 
                                 if (field.state === "mature") {
                                     tooltip = 'Ready to cultive';
