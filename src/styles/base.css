@@ -1,0 +1,38 @@
+:root {
+    --gray-darker: #323232;
+    --gray-dark: #6A6A6A;
+    --gray: #86898C;
+    --gray-light: #EEF0F2;
+    --gray-lighter: #F9FAFE;
+
+    --black: #0A0A0B;
+    --white: #FFFFFF;
+
+    --z1: 1;
+    --z2: 10;
+    --z3: 100;
+    --z4: 1000;
+    --z5: 10000;
+}
+
+* {
+    font-family: "Hero New", sans-serif;
+    color: var(--gray-darker);
+    font-weight: normal;
+    letter-spacing: .2px;
+}
+
+/* Text */
+/* .u-big {}
+
+.u-medium {}
+
+.u-small {}
+
+.u-link {} */
+
+strong {
+    font-weight: bold;
+}
+
+/* Index */
