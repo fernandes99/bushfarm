@@ -10,7 +10,7 @@ export const Background = styled.div`
     height: 100vh;
 `
 
-export const FieldList = styled.div`
+export const FieldList = styled.ul`
     position: absolute;
     bottom: 10%;
     width: 100%;
@@ -22,4 +22,11 @@ export const FieldList = styled.div`
     align-items: flex-end;
     justify-content: center;
     padding: 20px;
+
+    img {
+        transition: all .3s;
+        &:hover {
+            transform: scale(1.03);
+        }
+    }
 `
