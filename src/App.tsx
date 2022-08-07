@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
+import { Leafs } from "./components/leafs";
 import { Navigation } from "./components/navigation";
 import { HomePage } from "./pages/home";
 
@@ -12,6 +13,7 @@ function App() {
           <Route path='/' element={<HomePage />} />
         </Routes>
       </Router>
+      <Leafs />
     </>
   );
 }
