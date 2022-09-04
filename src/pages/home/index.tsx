@@ -13,8 +13,11 @@ export const HomePage = () => {
     const global = useSelector((state: RootState) => state.global);
 
     useEffect(() => {
+        // eslint-disable-next-line
         Plantation.get.all()
             .then(res => dispatch(setPlantationList(res)));
+
+        // eslint-disable-next-line
     }, [])
 
     return (
