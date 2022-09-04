@@ -15,7 +15,7 @@
     --z5: 10000;
 }
 
-* {
+*:not(path, g){
     font-family: "Hero New", sans-serif;
     color: var(--gray-darker);
     font-weight: normal;
