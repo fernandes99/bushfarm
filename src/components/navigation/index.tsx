@@ -1,19 +1,42 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import { useDispatch, } from 'react-redux';
+import { openModal } from '../../store/reducers/global';
+
 import { Icon } from '@iconify/react';
 import { Body, Wallet, Box, Header, Item, List } from "./styles"
+
 import logo from "../../assets/img/logo.svg";
 import coin from "../../assets/img/bush_coin.svg";
-import { useDispatch } from 'react-redux';
-import { openModal } from '../../store/reducers/global';
+import farmSound from "../../assets/sound/farm_sound.mp3";
 
 export const Navigation = () => {
     const dispatch = useDispatch();
+    const [audio] = useState(new Audio(farmSound));
+    const [muted, setMuted] = useState<boolean>(false);
     const [showBody, setShowBody] = useState<boolean>(true); 
+
+    const configureSound = () => {
+        audio.volume = 0.02;
+        audio.loop = true;
+
+        document.addEventListener('click', () => audio.play(), { once: true });
+    }
+
+    const handleSound = () => {
+        audio.muted = !muted;
+        setMuted(!muted);
+    }
+
+    useEffect(() => {
+        configureSound();
+    }, [])
 
     return (
         <Box>
             <Header>
                 <img src={logo} width="110px" alt="Logo Bush" />
+                <Icon icon={muted ? "charm:sound-mute" : "charm:sound-up"} onClick={handleSound} width={24} color="#D0D0D0" cursor='pointer' />
                 <Icon icon={showBody ? "akar-icons:arrow-up" : "akar-icons:arrow-down"} onClick={() => setShowBody(!showBody)} width={24} color="#D0D0D0" cursor='pointer' />
             </Header>
             {showBody &&

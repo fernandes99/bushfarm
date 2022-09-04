@@ -6,14 +6,15 @@ export const Overlay = styled.div`
     left: 0;
     width: 100vw;
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background: #000000b0;
 `
 
 export const Box = styled.div`
-    width: 520px;
+    height: 400px;
+    width: 600px;
+    position: fixed;
+    top: 16px;
+    left: 308px;
     background: #fff;
     border-radius: 10px;
     padding: 16px;

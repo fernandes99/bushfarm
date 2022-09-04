@@ -16,10 +16,15 @@ export const Box = styled.div`
 `
 
 export const Header = styled.div`
-    display: flex;
+    display: grid;
+    grid-template-columns: 5fr 1fr 1fr;
     align-items: center;
-    justify-content: space-between;
-    padding: 8px;
+    padding: 8px 0 8px 8px;
+
+    svg {
+        margin: auto;
+        transition: all .2s;
+    }
 
     svg:hover {
         color: #15b946 !important;

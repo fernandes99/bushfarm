@@ -17,6 +17,7 @@ export const PlantationBlock = () => {
                         let tooltip: string = 'Cultivate';
 
                         if (field.state === 'empty') {
+                            
                         }
 
                         if (field.state === 'growing') {

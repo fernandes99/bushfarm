@@ -5,8 +5,12 @@ const global = createSlice({
     initialState: {
         loading: true as boolean,
         modal: {
-            open: false as boolean,
+            open: true as boolean,
             type: "shop" as "shop" | "transactions" | "inventory",
+        },
+        audios: {
+            enable: true,
+            background: true
         }
     },
     reducers: {
@@ -21,9 +25,13 @@ const global = createSlice({
 
         closeModal (state, action) {
             state.modal.open = false;
+        },
+
+        enableAudio (state, action) {
+            state.audios.enable = action.payload;
         }
     }
 })
 
-export const { setLoading, openModal, closeModal } = global.actions;
+export const { setLoading, openModal, closeModal, enableAudio } = global.actions;
 export default global.reducer;

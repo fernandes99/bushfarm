@@ -1,23 +1,21 @@
 import { useEffect } from "react"
-import { useSelector } from "react-redux"
-import { useDispatch } from "react-redux"
-import { Modal } from "../../components/modal"
-import { PlantationBlock } from "../../components/plantation"
-import { Plantation } from "../../service/plantation"
+import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "../../store"
 import { setPlantationList } from "../../store/reducers/plantationList"
+
+import { Modal } from "../../components/modal"
+import { PlantationBlock } from "../../components/plantation"
+
 import { Box, Background } from "./styles"
+
+import { Plantation } from "../../service/plantation"
 
 export const HomePage = () => {
     const dispatch = useDispatch();
     const global = useSelector((state: RootState) => state.global);
 
     useEffect(() => {
-        // eslint-disable-next-line
-        Plantation.get.all()
-            .then(res => dispatch(setPlantationList(res)));
-
-        // eslint-disable-next-line
+        Plantation.get.all().then(res => dispatch(setPlantationList(res)));
     }, [])
 
     return (
