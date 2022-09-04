@@ -15,12 +15,8 @@ export const PlantationBlock = () => {
                     {plantationList.map((field: any) => {
                         let FieldComponent = fields[field.state];
                         let tooltip: string = 'Cultivate';
-                        let handleClick: () => void;
 
                         if (field.state === 'empty') {
-                            handleClick = () => {
-                                alert('Você clicou em um campo vazio');
-                            }
                         }
 
                         if (field.state === 'growing') {
@@ -28,17 +24,11 @@ export const PlantationBlock = () => {
 
                             tooltip = `${day}d${hour}h${minute}m to cultivate`;
                             FieldComponent = fields[field.type][field.state];
-                            handleClick = () => {
-                                alert('Você clicou em um campo crescendo');
-                            }
                         }
 
                         if (field.state === 'mature') {
                             tooltip = 'Ready to cultive';
                             FieldComponent = fields[field.type][field.state];
-                            handleClick = () => {
-                                alert('Você clicou em um campo maduro');
-                            }
                         }
 
                         return (

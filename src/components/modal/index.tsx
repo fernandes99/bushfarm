@@ -9,19 +9,18 @@ export const Modal = () => {
     const dispatch = useDispatch();
     const global = useSelector((state: RootState) => state.global);
 
-
     return (
         <Overlay onClick={() => dispatch(closeModal(true))}>
             <Box>
-                {global.modal.type == "shop" && 
+                {global.modal.type === "shop" && 
                     <span>Shopping Modal</span>
                 }
 
-                {global.modal.type == "transactions" && 
+                {global.modal.type === "transactions" && 
                     <span>Transactions Modal</span>
                 }
 
-                {global.modal.type == "inventory" && 
+                {global.modal.type === "inventory" && 
                     <span>Inventory Modal</span>
                 }
             </Box>
