@@ -31,7 +31,7 @@ export const Header = styled.div`
     }
 `
 
-export const Body = styled.div`
+export const Body = styled.nav`
     margin-top: 12px;
 `
 
