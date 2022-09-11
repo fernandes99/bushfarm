@@ -15,7 +15,10 @@ export const HomePage = () => {
     const global = useSelector((state: RootState) => state.global);
 
     useEffect(() => {
-        Plantation.get.all().then(res => dispatch(setPlantationList(res)));
+        Plantation.get.all().then(res => {
+            
+            dispatch(setPlantationList(res));
+        });
     }, [])
 
     return (

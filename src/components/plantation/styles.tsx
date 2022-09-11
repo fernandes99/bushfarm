@@ -24,15 +24,29 @@ export const FieldItem = styled.li.attrs((props: any) => props)`
         content: '${props => props.tooltip}';
         position: absolute;
         opacity: 0;
-        background-color: rgba(0, 0, 0, 0.75);
+        background-color: rgba(0, 0, 0, 0.85);
         bottom: -20px;
         left: 50%;
         transform: translateX(-50%);
         width: 200px;
         padding: 8px 12px;
-        border-radius: 4px;
+        border-radius: 8px;
         color: white;
         text-align: center;
+        z-index: 1;
+        transition: all .3s;
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 20px;
+        border: solid;
+        border-color: rgba(0, 0, 0, 0.85) transparent;
+        border-width: 0 6px 6px 6px;
+        opacity: 0;
         z-index: 1;
         transition: all .3s;
     }
@@ -41,8 +55,18 @@ export const FieldItem = styled.li.attrs((props: any) => props)`
         transition: all .1s;
     }
 
+    svg {
+        opacity: 0;
+        position: absolute;
+        right: 30px;
+        top: 20px;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 50%;
+        transition: all .1s;
+    }
+
     &:hover {
-        &:before {
+        &:before, &:after, & svg {
             opacity: 1;
         }
 
@@ -50,4 +74,6 @@ export const FieldItem = styled.li.attrs((props: any) => props)`
             transform: scale(1.03);
         }
     }
+
+    
 `

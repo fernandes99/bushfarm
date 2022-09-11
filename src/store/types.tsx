@@ -5,11 +5,12 @@ export type UserStateType = {
 };
 
 export type PlatationGeneralStateType = {
-    id: number,
-    type: string,
+    id?: number,
+    type?: string,
+    slot: number,
     state: string,
-    planted_at: Date,
-    mature_at: Date
+    planted_at?: Date,
+    mature_at?: Date
 };
 
 export type PlatationDetailStateType = {

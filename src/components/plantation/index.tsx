@@ -1,3 +1,5 @@
+import { Icon } from "@iconify/react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 
@@ -7,6 +9,10 @@ import { FieldItem, FieldList } from "./styles";
 
 export const PlantationBlock = () => {
     const plantationList = useSelector((state: RootState) => state.plantationList);
+
+    useEffect(() => {
+        console.log(plantationList);
+    }, [plantationList])
 
     return (
         <>
@@ -34,6 +40,7 @@ export const PlantationBlock = () => {
 
                         return (
                             <FieldItem key={field.id} tooltip={tooltip}>
+                                <Icon icon="carbon:overflow-menu-horizontal" width={28} color="#fff" />
                                 <FieldComponent />
                             </FieldItem>
                         )

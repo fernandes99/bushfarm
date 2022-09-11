@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { mockPlantationList } from "../mocks";
 import { PlatationGeneralStateType } from "../types";
 
 const plantationList = createSlice({
     name: 'plantationList',
-    initialState: [] as PlatationGeneralStateType[],
-    reducers: { 
+    initialState: mockPlantationList() as PlatationGeneralStateType[],
+    reducers: {
         setPlantationList (state: PlatationGeneralStateType[], action) {
             Object.assign(state, action.payload);
         },
