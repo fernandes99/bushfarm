@@ -12,8 +12,6 @@ export const FieldList = styled.ul`
     align-items: flex-end;
     justify-content: center;
     padding: 20px;
-
-    
 `
 
 export const FieldItem = styled.li.attrs((props: any) => props)`
@@ -37,20 +35,6 @@ export const FieldItem = styled.li.attrs((props: any) => props)`
         transition: all .3s;
     }
 
-    &:after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: 20px;
-        border: solid;
-        border-color: rgba(0, 0, 0, 0.85) transparent;
-        border-width: 0 6px 6px 6px;
-        opacity: 0;
-        z-index: 1;
-        transition: all .3s;
-    }
-
     img {
         transition: all .1s;
     }
@@ -61,12 +45,13 @@ export const FieldItem = styled.li.attrs((props: any) => props)`
         right: 30px;
         top: 20px;
         background: rgba(0, 0, 0, 0.7);
+        color: #fff;
         border-radius: 50%;
         transition: all .1s;
     }
 
     &:hover {
-        &:before, &:after, & svg {
+        &:before, & svg {
             opacity: 1;
         }
 

@@ -1,11 +1,13 @@
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import store from './store';
-import App from './App';
+import { App } from './App';
 
 import './styles/reset.css';
 import './styles/base.css';
 import './styles/fonts.css';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const app = ReactDOM.createRoot(
   document.getElementById('app') as HTMLElement

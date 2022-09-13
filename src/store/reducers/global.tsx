@@ -11,6 +11,11 @@ const global = createSlice({
         audios: {
             enable: true,
             background: true
+        },
+        notify: {
+            show: false as boolean,
+            message: '' as string,
+            type: '' as string
         }
     },
     reducers: {
@@ -29,9 +34,15 @@ const global = createSlice({
 
         enableAudio (state, action) {
             state.audios.enable = action.payload;
+        },
+
+        setNotify (state, action: any) {
+            state.notify.show = action.payload.show,
+            state.notify.message = action.payload.message,
+            state.notify.type = action.payload.type
         }
     }
 })
 
-export const { setLoading, openModal, closeModal, enableAudio } = global.actions;
+export const { setLoading, openModal, closeModal, enableAudio, setNotify } = global.actions;
 export default global.reducer;

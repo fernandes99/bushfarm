@@ -1,15 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { UserStateType } from "../types";
+import { UserDataType, UserInventoryType, UserStateType } from "../types";
 
 const user = createSlice({
     name: 'user',
-    initialState: {} as UserStateType,
+    initialState: {
+        data: {} as UserDataType,
+        inventory: {} as UserInventoryType,
+    } as UserStateType,
     reducers: { 
-        setUserName (state: UserStateType, action: any) {
-            state.name = action.payload;
+        setUserData (state: UserStateType, action) {
+            Object.assign(state.data, action.payload);
         },
+        setUserInventory (state: UserStateType, action) {
+            Object.assign(state.inventory, action.payload);
+        }
     }
 })
 
-export const { setUserName } = user.actions;
+export const { setUserData, setUserInventory } = user.actions;
 export default user.reducer;

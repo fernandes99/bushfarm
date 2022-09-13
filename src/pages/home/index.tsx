@@ -16,7 +16,6 @@ export const HomePage = () => {
 
     useEffect(() => {
         Plantation.get.all().then(res => {
-            
             dispatch(setPlantationList(res));
         });
     }, [])
