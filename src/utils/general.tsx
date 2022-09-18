@@ -3,8 +3,8 @@ export const getDiffTime = (time: any) => {
         current = current.getTime();
     let matureAt:any = new Date(time);
         matureAt = matureAt.getTime();
-
     let diff = Math.round((matureAt - current) / 1000);
+
     const day = Math.floor(diff / (24 * 60 * 60));
     diff = diff - (day * 24 * 60 * 60);
 

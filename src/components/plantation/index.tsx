@@ -24,6 +24,7 @@ export const PlantationBlock = () => {
                     {plantationList.map((field: PlatationGeneralStateType) => {
                         let FieldComponent = fields[field.state];
                         let tooltip: string = 'Cultivate';
+                        
                         const handleAction = () => {
                             if (field.state === 'empty') {
                                 dispatch(openModal('shop'));
@@ -39,9 +40,12 @@ export const PlantationBlock = () => {
                         }
 
                         if (field.state === 'growing' && field.type) {
-                            const { day, hour, minute } = getDiffTime(field.mature_at);
+                            const { day, hour, minute, second } = getDiffTime(field.mature_at);
+                            
+                            if (hour > 24) `${minute}m ${second}s to cultivate`;
+                            if (day > 1) tooltip = `${hour}h ${minute}m to cultivate`;
+                            else tooltip = `${day}d ${hour}h to cultivate`;
 
-                            tooltip = `${day}d${hour}h${minute}m to cultivate`;
                             FieldComponent = fields[field.type][field.state];
                         }
 
