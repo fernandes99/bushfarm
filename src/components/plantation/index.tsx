@@ -7,7 +7,7 @@ import { PlatationGeneralStateType } from "../../store/types";
 
 import { getDiffTime } from "../../utils/general";
 import { fields } from "../fields";
-import { FieldItem, FieldList } from "./styles";
+import { FieldItem, FieldList, FieldAction } from "./styles";
 
 export const PlantationBlock = () => {
     const dispatch = useDispatch();
@@ -23,7 +23,7 @@ export const PlantationBlock = () => {
                 && <FieldList>
                     {plantationList.map((field: PlatationGeneralStateType) => {
                         let FieldComponent = fields[field.state];
-                        let tooltip: string = 'Cultivate';
+                        let tooltip:string = '';
                         
                         const handleAction = () => {
                             if (field.state === 'empty') {
@@ -31,7 +31,8 @@ export const PlantationBlock = () => {
                             }
 
                             if (field.state === 'mature') {
-                                dispatch(setNotify({ show: true, message: `You gained 800 BTC 🤑` }));
+                                dispatch(setNotify({ show: true, message: `You cultivate ${field.type} 🤑` }));
+                                setTimeout(() => dispatch(setNotify({ show: true, message: `You gained 800 BTC 🤑` })), 200);
                             }
                         }
 
@@ -59,6 +60,11 @@ export const PlantationBlock = () => {
                                 {/* {field.state != 'empty' &&
                                     <Icon icon="carbon:overflow-menu-horizontal" width={28} color="#fff" fill="#fff" />
                                 } */}
+                                {field.state === 'empty' &&
+                                    <FieldAction>
+                                        Buy seed
+                                    </FieldAction>
+                                }
                                 <FieldComponent />
                             </FieldItem>
                         )

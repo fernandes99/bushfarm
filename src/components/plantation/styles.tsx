@@ -23,6 +23,7 @@ export const FieldItem = styled.li.attrs((props: any) => props)`
 
     &:before {
         content: '${props => props.tooltip}';
+        display: ${props => props.tooltip ? 'block' : 'none'};
         position: absolute;
         opacity: 0;
         background-color: rgba(0, 0, 0, 0.85);
@@ -62,6 +63,52 @@ export const FieldItem = styled.li.attrs((props: any) => props)`
             transform: scale(1.03);
         }
     }
+`
 
-    
+export const FieldAction = styled.button`
+    position: absolute;
+    bottom: -20px;
+
+    background: linear-gradient(180deg, #FFFFFF 0%, #CFE4DD 100%);
+    border-radius: 6px;
+    padding: 4px 24px;
+    box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    color: #007248;
+    z-index: 1;
+    animation: slide-top 500ms ease-in infinite alternate both;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 42%;
+        width: 12px;
+        height: 12px;
+        transform: rotate(45deg) translateX(-50%);
+
+        border-radius: 4px 0;
+        background: #ffffff;
+    }
+
+    @-webkit-keyframes slide-top {
+    0% {
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
+    }
+    100% {
+        -webkit-transform: translateY(-5px);
+                transform: translateY(-5px);
+    }
+    }
+    @keyframes slide-top {
+    0% {
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
+    }
+    100% {
+        -webkit-transform: translateY(-5px);
+                transform: translateY(-5px);
+    }
+    }
 `

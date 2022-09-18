@@ -11,8 +11,7 @@ export const Box = styled.div`
     background: rgba(255, 255, 255, .95);
     padding: 16px;
     border-radius: 12px;
-    z-index: 1;
-
+    z-index: 2;
 `
 
 export const Header = styled.div`
