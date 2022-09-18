@@ -2,7 +2,8 @@ import { Icon } from "@iconify/react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { openModal } from "../../store/reducers/global";
+import { openModal, setNotify } from "../../store/reducers/global";
+import { PlatationGeneralStateType } from "../../store/types";
 
 import { getDiffTime } from "../../utils/general";
 import { fields } from "../fields";
@@ -18,14 +19,18 @@ export const PlantationBlock = () => {
 
     return (
         <>
-            { !!plantationList
+            {!!plantationList
                 && <FieldList>
-                    {plantationList.map((field: any) => {
+                    {plantationList.map((field: PlatationGeneralStateType) => {
                         let FieldComponent = fields[field.state];
                         let tooltip: string = 'Cultivate';
                         const handleAction = () => {
                             if (field.state === 'empty') {
                                 dispatch(openModal('shop'));
+                            }
+
+                            if (field.state === 'mature') {
+                                dispatch(setNotify({ show: true, message: `You gained 800 BTC 🤑` }));
                             }
                         }
 
@@ -33,14 +38,14 @@ export const PlantationBlock = () => {
                             
                         }
 
-                        if (field.state === 'growing') {
+                        if (field.state === 'growing' && field.type) {
                             const { day, hour, minute } = getDiffTime(field.mature_at);
 
                             tooltip = `${day}d${hour}h${minute}m to cultivate`;
                             FieldComponent = fields[field.type][field.state];
                         }
 
-                        if (field.state === 'mature') {
+                        if (field.state === 'mature' && field.type) {
                             tooltip = 'Ready to cultive';
                             FieldComponent = fields[field.type][field.state];
                         }

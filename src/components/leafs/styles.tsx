@@ -5,11 +5,12 @@ export const Box = styled.div`
     top: -50px;
     width: 100%;
     text-align: right;
+    z-index: 0;
 
     i {
         display: inline-block;
         width: 200px;
-        height: 150px;
+        height: 20px;
         background: linear-gradient(to bottom right, #309900, #005600);
         transform: skew(20deg);
         border-radius: 5% 40% 70%;

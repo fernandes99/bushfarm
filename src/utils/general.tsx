@@ -1,4 +1,4 @@
-export const getDiffTime = (time: string) => {
+export const getDiffTime = (time: any) => {
     let current:any = new Date();
         current = current.getTime();
     let matureAt:any = new Date(time);

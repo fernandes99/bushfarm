@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 export const FieldList = styled.ul`
     position: absolute;
-    bottom: 10%;
+    bottom: 30%;
     width: 100%;
+    height: 20%;
 
     display: grid;
-    grid-template-columns: repeat(5, max-content);
-    grid-template-rows: repeat(2, 120px);
-    gap: 52px 62px;
+    grid-template-columns: repeat(5, 15%);
+    grid-template-rows: repeat(2, 100%);
+    gap: 8% 2%;
     align-items: flex-end;
     justify-content: center;
     padding: 20px;
@@ -16,6 +17,8 @@ export const FieldList = styled.ul`
 
 export const FieldItem = styled.li.attrs((props: any) => props)`
     position: relative;
+    display: flex;
+    justify-content: center;
     cursor: pointer;
 
     &:before {
@@ -26,7 +29,7 @@ export const FieldItem = styled.li.attrs((props: any) => props)`
         bottom: -20px;
         left: 50%;
         transform: translateX(-50%);
-        width: 200px;
+        width: 90%;
         padding: 8px 12px;
         border-radius: 8px;
         color: white;

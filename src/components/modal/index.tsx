@@ -11,23 +11,36 @@ import carrot from "../../assets/img/carrot.svg";
 import coin from "../../assets/img/bush_coin.svg";
 
 import { Overlay, Box, Body, List, Item, Info, Button } from "./styles"
+import { setUserInventory } from "../../store/reducers/user";
+import { SeedType } from "../../store/types";
 
 export const Modal = () => {
     const dispatch = useDispatch();
     const global = useSelector((state: RootState) => state.global);
+    const user = useSelector((state: RootState) => state.user);
 
-    const ItemShop = (props: { image: string, name: string, price: number, onClick: MouseEventHandler<HTMLButtonElement> }) => (
+    const ProductItem = (props: { image: string, name: string, price?: number, onClick: MouseEventHandler<HTMLButtonElement> }) => (
         <Item>
             <img src={props.image} alt={props.name} width={120} />
             <h4>{props.name}</h4>
             <Info>
-                <div>
-                    <img src={coin} width={20} alt="Bush Coin" />
-                    <span>{props.price} BTC</span>
-                </div>
-                <Button onClick={props.onClick}>
-                    Buy
-                </Button>
+                {global.modal.type === "shop" &&
+                    <>
+                        <div>
+                            <img src={coin} width={20} alt="Bush Coin" />
+                            <span>{props.price} BTC</span>
+                        </div>
+                        <Button onClick={props.onClick}>
+                            Buy
+                        </Button>
+                    </>
+                }
+
+                {global.modal.type === "inventory" &&
+                    <Button onClick={props.onClick}>
+                        Plant
+                    </Button>
+                }
             </Info>
         </Item>
     )
@@ -37,24 +50,26 @@ export const Modal = () => {
         dispatch(closeModal(true));
     }
 
-    const handleClickItem = (ev: any) => {
-        dispatch(setNotify({ show: true, message: 'You buy X 🤩' }))
+    const handleClickItem = (name: string) => {
+        dispatch(setUserInventory({ ...user.inventory.seeds, name }));
+        dispatch(setNotify({ show: true, message: `You buy ${name} 🤩` }));
         dispatch(openModal('inventory'));
     }
 
     return (
         <Overlay className="overlay" onClick={handleOverlay}>
             <Box>
+                {/* TODO: Separar em componentes cada estado dos modais */}
                 {global.modal.type === "shop" &&
                     <Body>
                         <h3>Shop</h3>
                         <List>
-                            <ItemShop image={tomato} name={"Tomato"} price={120} onClick={handleClickItem} />
-                            <ItemShop image={carrot} name={"Carrot"} price={250} onClick={handleClickItem} />
-                            <ItemShop image={beet} name={"Beet"} price={420} onClick={handleClickItem} />
-                            <ItemShop image={bellpepper} name={"Bellpepper"} price={980} onClick={handleClickItem} />
+                            <ProductItem image={tomato} name={"Tomato"} price={120} onClick={() => handleClickItem('Tomato')} />
+                            <ProductItem image={carrot} name={"Carrot"} price={250} onClick={() => handleClickItem('Carrot')} />
+                            <ProductItem image={beet} name={"Beet"} price={420} onClick={() => handleClickItem('Beet')} />
+                            <ProductItem image={bellpepper} name={"Bellpepper"} price={980} onClick={() => handleClickItem('Bellpepper')} />
                         </List>
-                    </Body>   
+                    </Body>
                 }
 
                 {global.modal.type === "transactions" && 
@@ -62,7 +77,21 @@ export const Modal = () => {
                 }
 
                 {global.modal.type === "inventory" && 
-                    <span>Inventory Modal</span>
+                    <Body>
+                        <h3>Inventory</h3>
+                        <List>
+                            {user.inventory.seeds?.map((seed: SeedType) => {
+
+                                    return <ProductItem
+                                        key={seed.id}
+                                        image={tomato}
+                                        name={seed.type}
+                                        onClick={() => handleClickItem(seed.type)}
+                                    />
+                                }
+                            )}
+                        </List>
+                    </Body>
                 }
             </Box>
         </Overlay>

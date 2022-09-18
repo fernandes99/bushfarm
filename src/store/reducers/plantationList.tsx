@@ -7,7 +7,12 @@ const plantationList = createSlice({
     initialState: mockPlantationList() as PlatationGeneralStateType[],
     reducers: {
         setPlantationList (state: PlatationGeneralStateType[], action) {
-            Object.assign(state, action.payload);
+            const data = state.map((item: PlatationGeneralStateType) => {
+                const slot = action.payload.find((field: PlatationGeneralStateType) => field.slot === item.slot);
+                return slot ? slot : item;
+            });
+
+            Object.assign(state, data);
         },
     }
 })

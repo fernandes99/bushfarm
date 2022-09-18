@@ -19,7 +19,7 @@ export type UserDataType = {
 }
 
 export type PlatationGeneralStateType = {
-    id?: number,
+    id: number,
     type?: string,
     slot: number,
     state: string,

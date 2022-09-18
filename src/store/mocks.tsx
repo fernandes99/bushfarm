@@ -1,8 +1,8 @@
 export const mockPlantationList = () => {
     let mock = [];
-    let count = 1;
+    let count = 0;
 
-    while (count <= 10) {
+    while (count <= 9) {
         mock.push({
             "slot": count,
             "state": "empty",
