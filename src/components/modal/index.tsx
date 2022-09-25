@@ -135,7 +135,7 @@ export const Modal = () => {
                                     })}
                                 </ul>
 
-                                <button>
+                                <button onClick={() => setSelectField(false)}>
                                     Cancel
                                 </button>
                             </SelectBox>
