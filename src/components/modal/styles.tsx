@@ -19,6 +19,7 @@ export const Box = styled.div`
     background: #fff;
     border-radius: 10px;
     padding: 8px;
+    overflow: hidden;
 `
 
 export const Body = styled.div`
@@ -96,5 +97,63 @@ export const Button = styled.button`
 
     &:hover {
         transform: translateY(-2px);
+    }
+`
+
+export const SelectBox = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffffed;
+    padding: 24px;
+
+    ul {
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+
+        li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            height: 120px;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            cursor: no-drop;
+
+            &.empty {
+                border: unset;
+                background-color: #15b946;
+                color: white;
+                font-weight: bold;
+                transition: all .1s;
+                cursor: pointer;
+
+                &:hover {
+                    transform: translateY(-2px);
+                }
+            }
+        }
+    }
+
+    button {
+        margin-top: 20px;
+        background-color: #d23333;
+        color: white;
+        font-weight: bold;
+        padding: 6px 24px;
+        border-radius: 6px;
+        
+        transition: all .1s;
+        cursor: pointer;
+
+        &:hover {
+            transform: translateY(-2px);
+        }
     }
 `

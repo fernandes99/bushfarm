@@ -1,6 +1,7 @@
+import { useState } from 'react';
+
 import { MouseEventHandler } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { closeModal, openModal, setNotify } from "../../store/reducers/global";
 
@@ -10,14 +11,17 @@ import bellpepper from "../../assets/img/bellpepper.svg";
 import carrot from "../../assets/img/carrot.svg";
 import coin from "../../assets/img/bush_coin.svg";
 
-import { Overlay, Box, Body, List, Item, Info, Button } from "./styles"
+import { Overlay, Box, Body, List, Item, Info, Button, SelectBox } from "./styles"
 import { addUserInventorySeeds, setUserInventory } from "../../store/reducers/user";
-import { SeedType } from "../../store/types";
+import { PlatationGeneralStateType, SeedType } from "../../store/types";
 
 export const Modal = () => {
     const dispatch = useDispatch();
     const global = useSelector((state: RootState) => state.global);
     const user = useSelector((state: RootState) => state.user);
+    const plantation = useSelector((state: RootState) => state.plantationList);
+    
+    const [selectField, setSelectField] = useState<boolean>(false);
 
     const ProductItem = (props: { image: string, name: string, price?: number, onClick: MouseEventHandler<HTMLButtonElement> }) => (
         <Item>
@@ -57,12 +61,14 @@ export const Modal = () => {
     }
 
     const plantSeed = (type: string) => {
-        let slot:any = prompt("For which slot?", "0");
-            slot = Number(slot);
-        debugger
+        setSelectField(true);
+        
+        // let slot:any = prompt(`For which slot? 2, 6, 7 or 9`, "0");
+        //     slot = Number(slot);
     }
 
-    const getImage = (type: string) => {
+    const getImage = (type?: string) => {
+        if (!type) return '';
         if (type == 'tomato') return tomato
         if (type == 'carrot') return carrot
         if (type == 'beet') return beet
@@ -103,6 +109,37 @@ export const Modal = () => {
                                 }
                             )}
                         </List>
+
+                        
+                        {selectField &&
+                            <SelectBox>
+                                <h3>Select the Field to Plant:</h3>
+
+                                <ul>
+                                    {plantation.map((item: PlatationGeneralStateType) => {
+                                        const isEmpty = item.state === 'empty';
+
+                                        return (
+                                            <>
+                                                {isEmpty ?
+                                                    <li className={'empty'}>
+                                                        Plant
+                                                    </li>
+                                                    :
+                                                    <li>
+                                                        <img src={getImage(item.type)} alt={item.type} width={64} />
+                                                    </li>
+                                                }
+                                            </>
+                                        )
+                                    })}
+                                </ul>
+
+                                <button>
+                                    Cancel
+                                </button>
+                            </SelectBox>
+                        }
                     </Body>
                 }
             </Box>
