@@ -9,7 +9,10 @@ export type UserInventoryType = {
 
 export type SeedType = {
     id: number,
-    type: string
+    type: string,
+    name: string,
+    exchange_value: number,
+    buyed_at: Date
 }
 
 export type UserDataType = {
@@ -22,7 +25,7 @@ export type PlatationGeneralStateType = {
     id: number,
     type?: string,
     slot: number,
-    state: string,
+    state: 'empty' | 'growing' | 'mature',
     planted_at?: Date,
     mature_at?: Date
 };

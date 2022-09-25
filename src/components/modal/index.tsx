@@ -11,7 +11,7 @@ import carrot from "../../assets/img/carrot.svg";
 import coin from "../../assets/img/bush_coin.svg";
 
 import { Overlay, Box, Body, List, Item, Info, Button } from "./styles"
-import { setUserInventory } from "../../store/reducers/user";
+import { addUserInventorySeeds, setUserInventory } from "../../store/reducers/user";
 import { SeedType } from "../../store/types";
 
 export const Modal = () => {
@@ -50,10 +50,23 @@ export const Modal = () => {
         dispatch(closeModal(true));
     }
 
-    const handleClickItem = (name: string) => {
-        dispatch(setUserInventory({ ...user.inventory.seeds, name }));
-        dispatch(setNotify({ show: true, message: `You buy ${name} 🤩` }));
+    const buySeed = (type: string, name: string) => {
+        dispatch(addUserInventorySeeds({ type, name, exchange_value: 200, buyed_at: Date.now() }));
+        dispatch(setNotify({ show: true, message: `You buy ${type} 🤩` }));
         dispatch(openModal('inventory'));
+    }
+
+    const plantSeed = (type: string) => {
+        let slot:any = prompt("For which slot?", "0");
+            slot = Number(slot);
+        debugger
+    }
+
+    const getImage = (type: string) => {
+        if (type == 'tomato') return tomato
+        if (type == 'carrot') return carrot
+        if (type == 'beet') return beet
+        return bellpepper
     }
 
     return (
@@ -64,10 +77,10 @@ export const Modal = () => {
                     <Body>
                         <h3>Shop</h3>
                         <List>
-                            <ProductItem image={tomato} name={"Tomato"} price={120} onClick={() => handleClickItem('Tomato')} />
-                            <ProductItem image={carrot} name={"Carrot"} price={250} onClick={() => handleClickItem('Carrot')} />
-                            <ProductItem image={beet} name={"Beet"} price={420} onClick={() => handleClickItem('Beet')} />
-                            <ProductItem image={bellpepper} name={"Bellpepper"} price={980} onClick={() => handleClickItem('Bellpepper')} />
+                            <ProductItem image={tomato} name={"Tomato"} price={120} onClick={() => buySeed('tomato', 'Tomato')} />
+                            <ProductItem image={carrot} name={"Carrot"} price={250} onClick={() => buySeed('carrot', 'Carrot')} />
+                            <ProductItem image={beet} name={"Beet"} price={420} onClick={() => buySeed('beet', 'Beet')} />
+                            <ProductItem image={bellpepper} name={"Bellpepper"} price={980} onClick={() => buySeed('bellpepper', 'Beelpepper')} />
                         </List>
                     </Body>
                 }
@@ -81,12 +94,11 @@ export const Modal = () => {
                         <h3>Inventory</h3>
                         <List>
                             {user.inventory.seeds?.map((seed: SeedType) => {
-
                                     return <ProductItem
                                         key={seed.id}
-                                        image={tomato}
-                                        name={seed.type}
-                                        onClick={() => handleClickItem(seed.type)}
+                                        image={getImage(seed.type)}
+                                        name={seed.name}
+                                        onClick={() => plantSeed(seed.type)}
                                     />
                                 }
                             )}

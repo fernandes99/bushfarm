@@ -16,10 +16,14 @@ const global = createSlice({
             show: false as boolean,
             message: '' as string,
             type: '' as string
+        },
+        slot: {
+            selected: false as boolean,
+            value: 0 as number,
         }
     },
     reducers: {
-        setLoading (state: any, action: any) {
+        setLoading (state, action) {
             state.loading = action.payload;
         },
 
@@ -36,10 +40,15 @@ const global = createSlice({
             state.audios.enable = action.payload;
         },
 
-        setNotify (state, action: any) {
+        setNotify (state, action) {
             state.notify.show = action.payload.show,
             state.notify.message = action.payload.message,
             state.notify.type = action.payload.type
+        },
+
+        setSlotSelected (state, action) {
+            state.slot.selected = action.payload.selected;
+            state.slot.value = action.payload.value;
         }
     }
 })

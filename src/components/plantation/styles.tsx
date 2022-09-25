@@ -86,7 +86,6 @@ export const FieldAction = styled.button`
         width: 12px;
         height: 12px;
         transform: rotate(45deg) translateX(-50%);
-
         border-radius: 4px 0;
         background: #ffffff;
     }

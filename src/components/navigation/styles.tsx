@@ -89,7 +89,7 @@ export const Item = styled.li`
     transition: all .2s;
     cursor: pointer;
 
-    &:hover {
+    &:hover, &.actived {
         border-left: #15b946 2px solid;
         color: #15b946;
 
