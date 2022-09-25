@@ -56,7 +56,7 @@ export const Modal = () => {
 
     const buySeed = (type: string, name: string) => {
         dispatch(addUserInventorySeeds({ type, name, exchange_value: 200, buyed_at: Date.now() }));
-        dispatch(setNotify({ show: true, message: `You buy ${type} 🤩` }));
+        dispatch(setNotify({ show: true, message: `You buyed ${type} 🤩` }));
         dispatch(openModal('inventory'));
     }
 
@@ -91,11 +91,11 @@ export const Modal = () => {
                     </Body>
                 }
 
-                {global.modal.type === "transactions" && 
+                {global.modal.type === "transactions" &&
                     <span>Transactions Modal</span>
                 }
 
-                {global.modal.type === "inventory" && 
+                {global.modal.type === "inventory" &&
                     <Body>
                         <h3>Inventory</h3>
                         <List>
@@ -118,11 +118,14 @@ export const Modal = () => {
                                 <ul>
                                     {plantation.map((item: PlatationGeneralStateType) => {
                                         const isEmpty = item.state === 'empty';
+                                        const plant = () => {
+                                            dispatch(setNotify({ show: true, message: `You planted ${item.type} 🤩` }));
+                                        }
 
                                         return (
                                             <>
                                                 {isEmpty ?
-                                                    <li className={'empty'}>
+                                                    <li className={'empty'} onClick={plant}>
                                                         Plant
                                                     </li>
                                                     :
