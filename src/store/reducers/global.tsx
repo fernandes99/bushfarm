@@ -5,7 +5,7 @@ const global = createSlice({
     initialState: {
         loading: true as boolean,
         modal: {
-            open: true as boolean,
+            open: false as boolean,
             type: "shop" as "shop" | "transactions" | "inventory",
         },
         audios: {
